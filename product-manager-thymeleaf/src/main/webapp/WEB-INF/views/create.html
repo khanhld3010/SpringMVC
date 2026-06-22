@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Mới Sản Phẩm</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 30px; background-color: #f8f9fa; }
+        .form-card { max-width: 450px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input[type="text"], input[type="number"], textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-submit { background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+        .btn-back { color: #007bff; text-decoration: none; display: inline-block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <h2>➕ Thêm Mới Sản Phẩm</h2>
+
+    <form th:action="@{/products/save}" th:object="${product}" method="post">
+
+        <div class="form-group">
+            <label>Mã sản phẩm (ID):</label>
+            <input type="number" th:field="*{id}" required placeholder="Nhập ID số nguyên">
+        </div>
+
+        <div class="form-group">
+            <label>Tên sản phẩm:</label>
+            <input type="text" th:field="*{name}" required placeholder="Nhập tên sản phẩm">
+        </div>
+
+        <div class="form-group">
+            <label>Giá cả ($):</label>
+            <input type="number" th:field="*{price}" step="any" required placeholder="Nhập giá">
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả chi tiết:</label>
+            <textarea th:field="*{description}" rows="3" placeholder="Nhập mô tả sản phẩm"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Lưu Sản Phẩm</button>
+    </form>
+
+    <a th:href="@{/products}" class="btn-back">⬅ Quay lại danh sách</a>
+</div>
+
+</body>
+</html>
