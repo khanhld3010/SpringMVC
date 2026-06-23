@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Information</title>
+</head>
+<body>
+<h2>Submitted Employee Information</h2>
+<!--/*@thymesVar id="employee" type="org.example.springformtutorial.model.Employee"*/-->
+<table>
+    <tr>
+        <td>Name:</td>
+        <td th:text="${employee.name}"></td>
+    </tr>
+    <tr>
+        <td>ID:</td>
+        <td th:text="${employee.id}"></td>
+    </tr>
+    <tr>
+        <td>Contact Number:</td>
+        <td th:text="${employee.contactNumber}"></td>
+    </tr>
+</table>
+</body>
+</html>
