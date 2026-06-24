@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Configuration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-container { width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        select, textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { background-color: #007BFF; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .back-link { display: inline-block; margin-top: 15px; text-decoration: none; color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Cấu Hình Email</h2>
+
+    <!--/*@thymesVar id="email" type="org.example.emailformmanager.model.Email"*/-->
+    <form th:action="@{/save}" method="POST" th:object="${email}">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label>Languages:</label>
+            <select th:field="*{language}">
+                <option th:each="lang : ${languageList}"
+                        th:value="${lang}"
+                        th:text="${lang}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Signature (Info):</label>
+            <textarea th:field="*{info}" rows="5"></textarea>
+        </div>
+
+        <button type="submit">Lưu Cấu Hình</button>
+    </form>
+
+    <a th:href="@{/home}" class="back-link">← Quay lại danh sách</a>
+</div>
+
+</body>
+</html>

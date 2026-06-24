@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Management</title>
+    <style>
+        /* CSS trang trí cho table nhìn chuyên nghiệp hơn */
+        table { width: 80%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #007BFF; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        a { text-decoration: none; color: #007BFF; font-weight: bold; }
+        a:hover { color: #0056b3; }
+        .btn-create { display: inline-block; background-color: #28a745; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 15px; text-decoration: none; }
+        .btn-create:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+<h2>Danh sách Cấu hình Email</h2>
+
+<a th:href="@{/email-form}" class="btn-create">+ Tạo Email Mới</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Language</th>
+        <th>Signature Info</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="emails" type="org.example.emailformmanager.model.Email"*/-->
+    <tr th:each="email : ${emails}">
+
+        <td th:text="${email.id}">1</td>
+
+        <td th:text="${email.language}">Ngôn ngữ mẫu</td>
+
+        <td th:text="${email.info}">Thông tin chữ ký mẫu</td>
+
+        <td>
+            <a th:href="@{/edit/{id}(id=${email.id})}">Sửa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
